@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babacan Evim - Fırsat Çarkı</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="brand-container">
+            <img src="https://placehold.co/60x60/ffffff/00529b?text=B" alt="Logo" class="logo">
+            <div class="brand-text">
+                <h1>BABACAN EVİM</h1>
+                <p>@babacanevim</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="info-box">
+            <h3>Şansını Çevir!</h3>
+            <p>Evinin eksiğini şanslı indirimle tamamla.</p>
+        </div>
+
+        <div class="wheel-wrapper">
+            <div class="stopper"></div>
+            
+            <canvas id="wheelCanvas" width="800" height="800"></canvas>
+            
+            <div class="wheel-shadow"></div>
+        </div>
+
+        <div id="phone-auth-container" class="auth-placeholder"></div>
+
+        <button class="spin-btn" id="spinBtn">ÇARKI ÇEVİR</button>
+    </main>
+
+    <div class="modal-overlay" id="resultModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">TEBRİKLER! 🎉</h2>
+            </div>
+            <div class="modal-body">
+                <p id="modalMsg">Kazandığın Ödül:</p>
+                <h1 id="winnerResult">...</h1>
+                <p class="sub-text" id="modalSub">Ekran görüntüsü al ve bize DM at!</p>
+            </div>
+            <button class="close-btn" id="modalBtn" onclick="closeModal()">HARİKA!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
