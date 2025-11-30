@@ -8,41 +8,67 @@
 body {
     background-color: var(--bg-color);
     display: flex; flex-direction: column; align-items: center;
+    /* Mobilde tam ekran hissi için */
     height: 100vh; 
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: 100dvh; 
+    overflow: hidden; 
 }
 
+/* Header */
 header {
-    width: 100%; background: var(--beko-blue); padding: 10px 0;
+    width: 100%; background: var(--beko-blue); padding: 8px 0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; justify-content: center; z-index: 10;
     flex-shrink: 0;
 }
-.brand-container { display: flex; align-items: center; gap: 10px; }
-.logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; background: white; }
-.brand-text h1 { color: white; font-size: 1.1rem; font-weight: 700; }
-.brand-text p { color: rgba(255,255,255,0.85); font-size: 0.75rem; }
+.brand-container { display: flex; align-items: center; gap: 8px; }
+.logo { width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; background: white; }
+.brand-text h1 { color: white; font-size: 1rem; font-weight: 700; }
+.brand-text p { color: rgba(255,255,255,0.85); font-size: 0.7rem; }
 
 main {
     display: flex; flex-direction: column; align-items: center;
-    justify-content: center;
+    justify-content: center; 
     flex-grow: 1; 
     width: 100%; padding: 10px;
+    overflow: hidden;
 }
 
-.info-box { text-align: center; margin-bottom: -20px; }
-.info-box h3 { color: var(--beko-blue); font-size: 1.4rem; margin-bottom: 2px; }
-.info-box p { font-size: 0.9rem; color: #555; }
+/* --- DÜZELTME BURADA --- */
+/* Bilgi kutusunun içindeki bozuk marginleri sildim ve kutunun altına boşluk verdim */
+.info-box { 
+    text-align: center; 
+    flex-shrink: 0;
+    /* Çark ile yazı arasındaki boşluğu burası belirler */
+    margin-bottom: 20px; 
+    /* Banner'a daha yakın olması için üst boşluğu sıfırladık */
+    margin-top: 0;
+}
 
+.info-box h3 { 
+    color: var(--beko-blue); 
+    font-size: 1.3rem; 
+    margin-bottom: 5px; /* 110px hatalıydı, 5px yapıldı */
+}
+
+.info-box p { 
+    font-size: 0.85rem; 
+    color: #555; 
+    margin-top: 0; /* -100px hatalıydı, 0 yapıldı */
+}
+
+/* --- ÇARK ALANI (BÜYÜKLÜK KORUNDU) --- */
 .wheel-wrapper {
     position: relative;
-    width: 85vw; 
-    height: 85vw;
-    max-width: 340px; 
-    max-height: 340px;
+    /* Senin ayarladığın boyutlar korundu */
+    width: min(95vw, 55vh); 
+    height: min(95vw, 55vh);
+    
+    max-width: 500px; 
+    max-height: 500px;
+    
     display: flex; justify-content: center; align-items: center;
-    margin-bottom: 20px;
     z-index: 1;
+    margin: 5px 0;
 }
 
 #wheelCanvas {
@@ -57,24 +83,27 @@ main {
 }
 
 .stopper {
-    position: absolute; top: -25px; width: 40px; height: 50px;
+    position: absolute; top: -20px; width: 45px; height: 55px;
     background: #ff3b3b; clip-path: polygon(50% 100%, 0 0, 100% 0);
     z-index: 20; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
 }
 
+/* Buton */
 .spin-btn {
     background: var(--beko-blue); color: white; border: none;
-    padding: 15px 40px; border-radius: 50px; font-size: 1.1rem;
+    padding: 14px 40px; border-radius: 50px; font-size: 1.1rem;
     font-weight: 700; box-shadow: 0 6px 15px rgba(0, 82, 155, 0.3);
     cursor: pointer; transition: all 0.3s ease;
-    width: 80%; max-width: 280px;
+    width: 85%; max-width: 320px;
     flex-shrink: 0;
+    margin-top: 10px; /* Buton ile çark arasına biraz nefes payı */
 }
 .spin-btn:active { transform: scale(0.95); }
 .spin-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-.auth-placeholder { width: 100%; margin-bottom: 15px; height: 5px; }
+.auth-placeholder { width: 100%; margin-bottom: 5px; height: 5px; flex-shrink: 1;}
 
+/* Modal */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
@@ -99,13 +128,12 @@ main {
     border-radius: 30px; font-weight: 700; cursor: pointer; width: 100%;
 }
 
+/* --- KISA EKRANLAR İÇİN DÜZELTME --- */
 @media (max-height: 700px) {
-    header { padding: 8px 0; }
-    .logo { width: 35px; height: 35px; }
-    .brand-text h1 { font-size: 1rem; }
-    .wheel-wrapper { width: 260px; height: 260px; margin-bottom: 15px; }
-    .info-box {margin-bottom: 60px; margin-top: -20px;}
-    .info-box h3 { font-size: 1.3rem; }
-    .info-box p { font-size: 0.8rem; }
+    .wheel-wrapper { 
+        width: min(85vw, 320px); 
+        height: min(85vw, 320px); 
+    }
+    .info-box h3 { font-size: 1.1rem; }
     .spin-btn { padding: 12px 30px; font-size: 1rem; }
 }
