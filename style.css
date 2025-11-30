@@ -8,70 +8,73 @@
 body {
     background-color: var(--bg-color);
     display: flex; flex-direction: column; align-items: center;
-    min-height: 100vh; overflow-x: hidden;
+    height: 100vh; 
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 header {
-    width: 100%; background: var(--beko-blue); padding: 15px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; justify-content: center; z-index: 10;
+    width: 100%; background: var(--beko-blue); padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; justify-content: center; z-index: 10;
+    flex-shrink: 0;
 }
-.brand-container { display: flex; align-items: center; gap: 15px; }
-.logo { width: 50px; height: 50px; border-radius: 50%; border: 2px solid white; background: white; }
-.brand-text h1 { color: white; font-size: 1.2rem; font-weight: 700; }
-.brand-text p { color: rgba(255,255,255,0.8); font-size: 0.85rem; }
+.brand-container { display: flex; align-items: center; gap: 10px; }
+.logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid white; background: white; }
+.brand-text h1 { color: white; font-size: 1.1rem; font-weight: 700; }
+.brand-text p { color: rgba(255,255,255,0.85); font-size: 0.75rem; }
 
 main {
     display: flex; flex-direction: column; align-items: center;
-    justify-content: center; flex-grow: 1; width: 100%; padding: 20px;
+    justify-content: center;
+    flex-grow: 1; 
+    width: 100%; padding: 10px;
 }
-.info-box { text-align: center; margin-bottom: 30px; }
-.info-box h3 { color: var(--beko-blue); font-size: 1.5rem; }
 
-/* --- ÇARK ALANI --- */
+.info-box { text-align: center; margin-bottom: -20px; }
+.info-box h3 { color: var(--beko-blue); font-size: 1.4rem; margin-bottom: 2px; }
+.info-box p { font-size: 0.9rem; color: #555; }
+
 .wheel-wrapper {
     position: relative;
-    width: 340px;
-    height: 340px;
+    width: 85vw; 
+    height: 85vw;
+    max-width: 340px; 
+    max-height: 340px;
     display: flex; justify-content: center; align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     z-index: 1;
 }
 
 #wheelCanvas {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     border-radius: 50%;
-    /* Dönüş animasyonu JS ile dinamik verilecek, buradaki default */
-    transform: rotate(0deg);
 }
 
 .wheel-shadow {
-    position: absolute; bottom: -20px; left: 10%; width: 80%; height: 20px;
+    position: absolute; bottom: -15px; left: 10%; width: 80%; height: 15px;
     background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 70%);
     z-index: -1;
 }
 
-/* Ok */
 .stopper {
-    position: absolute; top: -30px; width: 50px; height: 60px;
+    position: absolute; top: -25px; width: 40px; height: 50px;
     background: #ff3b3b; clip-path: polygon(50% 100%, 0 0, 100% 0);
     z-index: 20; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
-    transform-origin: top center;
 }
 
-/* Buton */
 .spin-btn {
     background: var(--beko-blue); color: white; border: none;
-    padding: 16px 50px; border-radius: 50px; font-size: 1.2rem;
-    font-weight: 700; box-shadow: 0 8px 20px rgba(0, 82, 155, 0.3);
+    padding: 15px 40px; border-radius: 50px; font-size: 1.1rem;
+    font-weight: 700; box-shadow: 0 6px 15px rgba(0, 82, 155, 0.3);
     cursor: pointer; transition: all 0.3s ease;
+    width: 80%; max-width: 280px;
+    flex-shrink: 0;
 }
 .spin-btn:active { transform: scale(0.95); }
 .spin-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-.auth-placeholder { width: 100%; max-width: 300px; margin-bottom: 20px; }
+.auth-placeholder { width: 100%; margin-bottom: 15px; height: 5px; }
 
-/* Modal */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
@@ -80,22 +83,29 @@ main {
 }
 .modal-overlay.active { opacity: 1; visibility: visible; }
 .modal-content {
-    background: white; width: 90%; max-width: 400px; border-radius: 20px;
+    background: white; width: 90%; max-width: 350px; border-radius: 20px;
     padding: 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     transform: scale(0.8); transition: transform 0.3s cubic-bezier(0.17, 0.67, 0.45, 1.4);
 }
 .modal-overlay.active .modal-content { transform: scale(1); }
-.modal-header h2 { color: var(--beko-blue); font-size: 2rem; margin-bottom: 10px; }
+.modal-header h2 { color: var(--beko-blue); font-size: 1.8rem; margin-bottom: 10px; }
 .modal-body h1 {
-    font-size: 1.8rem; color: #333; margin: 15px 0; padding: 10px;
+    font-size: 1.4rem; color: #333; margin: 15px 0; padding: 10px;
     background: #f0f4f8; border-radius: 10px; border: 2px dashed var(--beko-blue);
 }
-.sub-text { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+.sub-text { font-size: 0.85rem; color: #666; margin-bottom: 20px; }
 .close-btn {
     background: #28a745; color: white; border: none; padding: 12px 30px;
     border-radius: 30px; font-weight: 700; cursor: pointer; width: 100%;
 }
 
-@media (max-width: 400px) {
-    .wheel-wrapper { width: 280px; height: 280px; }
+@media (max-height: 700px) {
+    header { padding: 8px 0; }
+    .logo { width: 35px; height: 35px; }
+    .brand-text h1 { font-size: 1rem; }
+    .wheel-wrapper { width: 260px; height: 260px; margin-bottom: 15px; }
+    .info-box {margin-bottom: 60px; margin-top: -20px;}
+    .info-box h3 { font-size: 1.3rem; }
+    .info-box p { font-size: 0.8rem; }
+    .spin-btn { padding: 12px 30px; font-size: 1rem; }
 }
